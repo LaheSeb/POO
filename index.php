@@ -3,11 +3,11 @@ include ("Personnage.php");
 
     print("<h1>Jeu de combat</h1>");
     //Création de personnage
-    $perso1 = new Personnage();
+    $perso1 = new Personnage("Macron");
     $perso1->definirForce(20);
     $perso1->definirExperience(15);
     
-    $perso2 = new Personnage();
+    $perso2 = new Personnage("Castex");
     $perso2->definirForce(60);
     $perso2->definirExperience(1);
 
