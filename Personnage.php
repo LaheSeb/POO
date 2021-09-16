@@ -5,11 +5,12 @@
 class Personnage {
 
     //Déclaration des attributs et méthodes ici
-
+    private $_id ;
     private $_nom = 'Inconnu';   // Son nom, par défaut 'Inconnu'
     private $_force =50 ;       // LA force du personnage, par défaut 50
-    private $_experience =1;   // Son experience, par défaut 1
     private $_degats  =0;       // Ses dégats par défaut 0
+    private $_experience =1;   // Son experience, par défaut 1
+    private $_niveau = 0;
 
     const FORCE_PETITE =20;
     const FORCE_MOYENNE =50;
@@ -21,10 +22,12 @@ class Personnage {
 
     public function __construct ( string $nom, int $force = 50 ,int $degats = 0) // Constructeur demande 3 parametres
     {
+        $this->setId($id);
         $this->setNom ($nom);
         $this->setForce($force);
         $this->setExperience(1);
         $this->setDegats($degats);
+        $this->setNiveau($niveau);
         self::$_nbrJoeurs++;
         print (" <br>Le personnage " .$nom. " est crée ");
     
@@ -35,6 +38,42 @@ class Personnage {
         .$this->getForce().' Degats = '
         .$this->getDegats();// " (" . $this->getDegats() .")";
     } 
+
+    public function setId (int $id):Peronnage{
+        if (!is_int($id)) // S'il s'agitt pas d'un texte
+        {
+            trigger_error('L\'Id d\'un personnage doit être un entier', E_USER_ERROR);
+            return $this;
+        }
+        $this->_id = $id;
+        return $this;
+
+}
+
+    public function getId():string
+    {
+        return $this->_id;
+    }
+
+
+    
+    public function setNiveau (int $niveau):Personnage{
+        if (!is_int($niveau)) // S'il s'agitt pas d'un texte
+        {
+            trigger_error('Le niveau d\'un personnage doit être un entier', E_USER_ERROR);
+            return $this;
+        }
+        $this->_niveau = $niveau;
+        return $this;
+
+}
+
+    public function getNiveau():string
+    {
+        return $this->_niveau;
+    }
+
+
 
     public function setNom(string $nom):Personnage //Cette methode renvoi un personne 
     {   
