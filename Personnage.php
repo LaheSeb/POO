@@ -20,15 +20,30 @@ class Personnage {
     private static $_texteADire = "<br> La partie est démarée qui veut se batte ? <br>";
     private static $_nbrJoeurs = 0;
 
-    public function __construct (array $ligne)// Constructeur demande 3 parametres
+    public function __construct (array $ligne)// Constructeur demande 3 parametres 
     {
         $this->hydrate($ligne);
         self::$_nbrJoeurs++;
-        print (" <br>Le personnage " .$ligne['nom']. " est crée ");
+        print (" <br>Le personnage " .$this->getNom(). " est crée ");
     
 
     } 
+
     public function hydrate(array $ligne)
+    {
+        foreach( $ligne as $key => $value){
+          $method =  'set'.ucfirst($key)  ;
+          if (method_exists($this, $method))
+          {
+              $this->$method($value);
+          }
+        }
+    }
+
+
+
+
+    /*public function hydrate2(array $ligne)
     {
         
         $this->setNom ($ligne['nom']);
@@ -36,10 +51,7 @@ class Personnage {
         $this->setNiveau($ligne['niveau']);
         $this->setExperience(1);
         $this->setDegats($ligne['degats']);
-       
-       
-       
-    }
+       }*/
 
     public function __toString():string{
         return '<br> Joeur '.$this->getNom(). ' Force = '
@@ -47,7 +59,7 @@ class Personnage {
         .$this->getDegats();// " (" . $this->getDegats() .")";
     } 
 
-    public function setId (int $id):Peronnage{
+    public function setId (int $id):Personnage{
         if (!is_int($id)) // S'il s'agitt pas d'un texte
         {
             trigger_error('L\'Id d\'un personnage doit être un entier', E_USER_ERROR);

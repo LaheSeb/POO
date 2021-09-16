@@ -10,6 +10,9 @@ include "conf.php";
 try {
     $db = new PDO ($dsn, $user, $password);
 
+    $personnagesManager = new PersonnagesManager($db);
+   /* $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
     if($db){
         print('<br> Lecture dans la base de données :');
         $request = $db->query('SELECT id, nom, `force`, degats, niveau, experience FROM personnages; ');
@@ -21,8 +24,8 @@ try {
             print('<br>' .$perso->getNom().' = ' .$perso->getForce() . ' de force, ' .$perso->getDegats(). ' de degats, '
             . $perso->getExperience(). ' de experience,' .$perso->getNiveau(). 'de Niveau.');
         }
-    }
-} catch (\PDOException $e) {
+    }*/
+} catch (PDOException $e) {
     print('<br>Erruer de connexion : ' . $e->getMessage());
 }
 
