@@ -20,17 +20,25 @@ class Personnage {
     private static $_texteADire = "<br> La partie est démarée qui veut se batte ? <br>";
     private static $_nbrJoeurs = 0;
 
-    public function __construct ( string $nom, int $force = 50 ,int $degats = 0) // Constructeur demande 3 parametres
+    public function __construct (array $ligne)// Constructeur demande 3 parametres
     {
-        $this->setId($id);
-        $this->setNom ($nom);
-        $this->setForce($force);
-        $this->setExperience(1);
-        $this->setDegats($degats);
-        $this->setNiveau($niveau);
+        $this->hydrate($ligne);
         self::$_nbrJoeurs++;
-        print (" <br>Le personnage " .$nom. " est crée ");
+        print (" <br>Le personnage " .$ligne['nom']. " est crée ");
     
+
+    } 
+    public function hydrate(array $ligne)
+    {
+        
+        $this->setNom ($ligne['nom']);
+        $this->setForce($ligne['force']);
+        $this->setNiveau($ligne['niveau']);
+        $this->setExperience(1);
+        $this->setDegats($ligne['degats']);
+       
+       
+       
     }
 
     public function __toString():string{
@@ -68,7 +76,7 @@ class Personnage {
 
 }
 
-    public function getNiveau():string
+    public function getNiveau():int
     {
         return $this->_niveau;
     }
@@ -186,7 +194,7 @@ class Personnage {
 
     public function getExperience():int{
 
-    return $this->$_experience;
+    return $this->_experience;
 
     }
     

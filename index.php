@@ -41,6 +41,7 @@ print("Pour info la force Grande = ".Personnage::FORCE_GRANDE."<br>");
     print("<br>-------------------------------------<br>");
    print($perso1);
    print($perso2);
+   
 
 
 
