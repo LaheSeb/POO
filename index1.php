@@ -1,23 +1,19 @@
 <?php
-function chargerClasse( string $classe)
-{
-    include $classe . '.php' ; //On inclut la classe correspondante au parametre passé 
-}
-spl_autoload_register('chargerClasse');
-include "conf.php";
+
+include "header.php";
 
 
 try {
     $db = new PDO ($dsn, $user, $password);
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);// si toutes les colonnes sont 
 
 
     $personnagesManager = new PersonnagesManager($db);
    $personnages = $personnagesManager->getList();
-    print('<br>Liste des personnages');
+    print('<br>Liste des personnages : ');
    foreach ($personnages as $personnage)
    {
-       print('<br> ' . $personnage->getNom());
+       print('<br> <a href="personnage_view.php?id='.$personnage->getId().'">' . $personnage->getNom().'</a>');
    
 
    }

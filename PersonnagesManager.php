@@ -16,7 +16,13 @@ class PersonnagesManager
     public function delete(Pesonnage $perso):bool{
 
     }
-    public function getOne(){
+    public function getOne(int $id){
+        $sth = $this->_db->prepare("SELECT id, nom, `force`, degats, niveau, experience FROM personnages Where id =? ");
+        $sth->execute(array($id));
+        $ligne = $sth->fetch();
+
+        $perso = new Personnage($ligne);
+        return $perso;
 
     }
     public function getList():array{

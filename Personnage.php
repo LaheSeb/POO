@@ -24,8 +24,6 @@ class Personnage {
     {
         $this->hydrate($ligne);
         self::$_nbrJoeurs++;
-        print (" <br>Le personnage " .$this->getNom(). " est crée ");
-    
 
     } 
 
