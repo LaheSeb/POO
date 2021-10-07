@@ -8,6 +8,34 @@ try {
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);// si toutes les colonnes sont 
 
 
+$unMagicien = new Magicien(
+    [
+    'id'=>7,
+    'nom'=>"Gandaf",
+    'force'=>20,
+]);
+print("<br/>Mon nouveau personnage = ".$unMagicien->getNom());
+
+
+$unAutrePerso = new Archer (
+    [  'id'=>8,
+    'nom'=>"Legolas",
+    'force'=>20,
+]);
+print("<br/>Mon nouveau personnage = ".$unAutrePerso->getNom());
+
+
+
+
+
+
+
+
+
+
+
+
+
     $personnagesManager = new PersonnagesManager($db);
    $personnages = $personnagesManager->getList();
     print('<br>Liste des personnages : ');

@@ -29,13 +29,29 @@ class PersonnagesManager
 
         $listeDePersonnage = array();
         // retourne la liste de tous les perosnnages 
-        $request = $this->_db->query('SELECT id, nom, `force`, degats, niveau, experience FROM personnages; ');
+        $request = $this->_db->query('SELECT id, nom, `force`, degats, niveau, experience, classe FROM personnages; ');
 
         while ($ligne = $request->fetch(PDO::FETCH_ASSOC))// Chauqe entrée seta recuoerer
         {
             // On passe les donnés (stock"s dans un tableau) concernant le personnae
-
-            $perso= new Personnage($ligne);
+            switch ((int)($ligne['classe'])) {
+                case Personnage::MAGICIEN:
+                    # code...
+                    $perso =new Magicien($ligne);
+                    break;
+                    case Personnage::ARCHER:
+                        # code...
+                        $perso =new Archer($ligne);
+                        break;
+                        case Personnage::BRUTE:
+                            # code...
+                            $perso =new Brute($ligne);
+                            break;
+                default:
+                    
+                    break;
+            }
+            
             $listeDePersonnage[] = $perso; // Ajouter personnage au tableau 
           
         }

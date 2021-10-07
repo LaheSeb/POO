@@ -5,4 +5,3 @@ function chargerClasse( string $classe)
 }
 spl_autoload_register('chargerClasse');
 include "conf.php";
-?>
